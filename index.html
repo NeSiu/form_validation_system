@@ -38,20 +38,21 @@
 	<div id="paragraph-window">
 
 		<div class="paragraph-item">
-			<p id="check-login">asadasdas</p>
+			<p id="check-login">login incorrect</p>
 		</div>
 
 		<div class="paragraph-item">
-			<p id="check-password">s</p>
+			<p id="check-password"></p>
 		</div>
 
 		<div class="paragraph-item">
-			<p id="check-email">d</p>
+			<p id="check-email"></p>
 		</div>
 
 	</div>
 
 	<script type="text/javascript">
+		
 		$("#show-password").hover(function() {
 			$("#password").attr("type", "text");
 			/* Stuff to do when the mouse enters the element */
@@ -65,8 +66,16 @@
  			 return regex.test(email);
 		}
 
+		//----------------------------- e-mail check ----------------------------------------------//
+
 		$("#submit-button").click(function() {
-			
+			if (isEmail($("#e-mail").val())) {
+				$("#check-email").css("color", "#338A22");
+				$("#check-email").html("e-mail status: correct");
+			} else {
+				$("#check-email").css("color", "#F42929");
+				$("#check-email").html("e-mail status: incorrect!");
+			}
 		});
 	</script>
 
