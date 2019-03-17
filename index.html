@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500" rel="stylesheet">
 </head>
 <body>
+	<p id="head-title">Form validation system</p>
 	<div id="main-window">
 		<form>
 			<div class="form-item">
@@ -96,27 +97,7 @@
 			if(login==""){
 				$("#check-login").html("Login field is empty!");
 			}else {
-				filled_fields++;
-			}
-
-			if(password==""){
-				$("#check-password").html("Password field is empty!");
-			}else {
-				filled_fields++;
-				if(passwordConfirm==""){
-					$("#check-password").html("Confirm your password");
-				}else {
-					filled_fields++;
-				}
-			}
-			if(email_address==""){
-				$("#check-email").html("E-mail field is empty!");
-			}else {
-				filled_fields++;
-			}
-
-			if(filled_fields==4){
-				//----------------------------- login check ---------------------------------------------//
+			//----------------------------- login check ---------------------------------------------//
 				if(correct_login(login)){
 					if(login.length>7){
 						$("#check-login").css("color", "#338A22");
@@ -130,7 +111,17 @@
 					$("#check-login").css("color", "red");
 					$("#check-login").html("login have to start with a letter!");
 				}
-				//----------------------------- password check --------------------------------------------//
+				filled_fields++;
+			}
+
+			if(password==""){
+				$("#check-password").html("Password field is empty!");
+			}else {
+				filled_fields++;
+				if(passwordConfirm==""){
+					$("#check-password").html("Confirm your password");
+				}else {
+					//----------------------------- password check --------------------------------------------//
 				if (password.length>7) {
 					if(password==passwordConfirm){
 						$("#check-password").css("color", "#338A22");
@@ -143,8 +134,12 @@
 					$("#check-password").css("color", "red");
 					$("#check-password").html("password is to short! minimum 8 character");
 				}
-
-
+					filled_fields++;
+				}
+			}
+			if(email_address==""){
+				$("#check-email").html("E-mail field is empty!");
+			}else {
 				//----------------------------- e-mail check ----------------------------------------------//
 				if (isEmail($("#e-mail").val())) {
 					$("#check-email").css("color", "#338A22");
@@ -153,6 +148,12 @@
 					$("#check-email").css("color", "red");
 					$("#check-email").html("e-mail format incorrect");
 				}
+				filled_fields++;
+			}
+
+			if(filled_fields==4){
+
+
 			} else {
 				
 			}
