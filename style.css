@@ -66,15 +66,17 @@ label{
 #eye{
 	font-size: 26px;
 	position: relative;
-	top: -9px;
+	top: -33px;
+	left: 12px;
 }
 
 #show-password{
 	position: relative;
-	top: -27px;
-	left: 426px;
+	background-color: #D7D8CE;
+	/*top: -20px;*/
+	left: 422px;
 	width: 50px;
-	height: 27px;
+	height: 23px;
 	border: 2px solid #C0C1BC;
 	border-radius: 5px;
 }
@@ -110,7 +112,7 @@ label{
 }
 
 .paragraph-item{
-	width: 480px;
+	width: 466px;
 	height: 30px;
 	border: 2px solid #C0C1BC;
 	border-radius: 10px;
@@ -122,6 +124,7 @@ label{
 .paragraph-item>p{
 	margin-top: 0px;
 	padding: 4px;
+	color: red;
 }
 
 #check-login{

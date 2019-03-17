@@ -20,7 +20,7 @@
 			<div class="form-item">
 				<label for="password">password</label>
 				<input type="password" id="password" placeholder="password">
-				<button id="show-password"><span id="eye">&#128065;</span></button>
+				<div id="show-password"><span id="eye" >&#128065;</span></div>
 			</div>
 			<div class="form-item">
 				<label for="passwordConfirm">confirm password</label>
@@ -38,14 +38,14 @@
 	<div id="paragraph-window">
 
 		<div class="paragraph-item">
-			<p id="check-login">login incorrect</p>
+			<p id="check-login"></p>
 		</div>
 
 		<div class="paragraph-item">
 			<p id="check-password"></p>
 		</div>
 
-		<div class="paragraph-item">
+		<div class="paragraph-item" style="margin-bottom: 0px;">
 			<p id="check-email"></p>
 		</div>
 
@@ -66,16 +66,97 @@
  			 return regex.test(email);
 		}
 
-		//----------------------------- e-mail check ----------------------------------------------//
+		function correct_login(login){
+			var regex = /^[a-zA-Z]/;
+			return regex.test(login);
+		}
+
+		function reset_data(){
+				$("#login").html("");
+				$("#password").html("");
+				$("#passwordConfirm").html("");
+				$("#e-mail").html("");
+				$("#check-email").html("");
+				$("#check-password").html("");
+				$("#check-login").html("");
+		}
+
+		
 
 		$("#submit-button").click(function() {
-			if (isEmail($("#e-mail").val())) {
-				$("#check-email").css("color", "#338A22");
-				$("#check-email").html("e-mail status: correct");
-			} else {
-				$("#check-email").css("color", "#F42929");
-				$("#check-email").html("e-mail status: incorrect!");
+			var filled_fields=0;
+
+			var login = $("#login").val();
+			var password = $("#password").val();
+			var passwordConfirm =$("#passwordConfirm").val();
+			var email_address = $("#e-mail").val();
+			
+			reset_data();
+
+			if(login==""){
+				$("#check-login").html("Login field is empty!");
+			}else {
+				filled_fields++;
 			}
+
+			if(password==""){
+				$("#check-password").html("Password field is empty!");
+			}else {
+				filled_fields++;
+				if(passwordConfirm==""){
+					$("#check-password").html("Confirm your password");
+				}else {
+					filled_fields++;
+				}
+			}
+			if(email_address==""){
+				$("#check-email").html("E-mail field is empty!");
+			}else {
+				filled_fields++;
+			}
+
+			if(filled_fields==4){
+				//----------------------------- login check ---------------------------------------------//
+				if(correct_login(login)){
+					if(login.length>7){
+						$("#check-login").css("color", "#338A22");
+						$("#check-login").html("login status: correct");
+					} else {
+						$("#check-login").css("color", "red");
+						$("#check-login").html("login is to short! minimum 8 character");
+					}
+
+				} else {
+					$("#check-login").css("color", "red");
+					$("#check-login").html("login have to start with a letter!");
+				}
+				//----------------------------- password check --------------------------------------------//
+				if (password.length>7) {
+					if(password==passwordConfirm){
+						$("#check-password").css("color", "#338A22");
+						$("#check-password").html("password status: correct");
+					} else{
+						$("#check-password").css("color", "red");
+						$("#check-password").html("passwords are not the same");
+					}
+				}else {
+					$("#check-password").css("color", "red");
+					$("#check-password").html("password is to short! minimum 8 character");
+				}
+
+
+				//----------------------------- e-mail check ----------------------------------------------//
+				if (isEmail($("#e-mail").val())) {
+					$("#check-email").css("color", "#338A22");
+					$("#check-email").html("e-mail status: correct");
+				} else {
+					$("#check-email").css("color", "red");
+					$("#check-email").html("e-mail format incorrect");
+				}
+			} else {
+				
+			}
+
 		});
 	</script>
 
